@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+button,
+input,
+textarea {
+  font-family: "Aldrich", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: larger;
+  color: #ffffff;
+}
+   /* Animation styles */
+   .fadeIn {
+    animation: fadeIn 0.5s ease;
+  }
+
+  .fadeOut {
+    animation: fadeOut 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+/* Vibration effect */
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    10% { transform: translate(-3px, 3px); }
+    20% { transform: translate(-3px, -3px); }
+    30% { transform: translate(3px, 3px); }
+    40% { transform: translate(3px, -3px); }
+    50% { transform: translate(-3px, 3px); }
+    60% { transform: translate(-3px, -3px); }
+    70% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    90% { transform: translate(-3px, 3px); }
+    100% { transform: translate(0); }
+}
+
+.vibrate {
+    animation: vibrate 0.4s ease-in-out;
+}
+
+/* Custom styles */
+.write-note textarea,
+.write-note input[type="text"] {
+    background-color: #1e2022;
+    font-size: small;
+    color: rgb(36, 36, 36); /* Light text color */
+    border: 1px solid #36404a; /* Dark border color */
+    transition: border-color 0.3s ease;
+}
+
+.write-note textarea:focus,
+.write-note input[type="text"]:focus {
+    border-color: #60a5fa; /* Dark blue focus color */
+    outline: none;
+}
+
+.write-note button {
+    background-color: #60a5fa; /* Dark blue button color */
+    color: #ffffff; /* White text color */
+    transition: background-color 0.3s ease;
+    font-size: small;
+}
+
+.write-note button:hover {
+    background-color: #2563eb; /* Dark blue hover color */
+}
+/* Modal */
+.modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure modal is on top of other content */
+}
+
+.modal-content {
+    font-size: small;
+    background-color: #181818;
+    max-width: 400px;
+    width: 100%;
+    border-width: 1px;
+    border-color: #2563eb;
+    border-radius: 0; /* Remove border radius */
+}
+
+.modal-header {
+    border-bottom: 1px solid #1558d39a; /* Light border color */
+}
+
+.modal-body {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable scrolling if content exceeds height */
+}
+.modal-content textarea,
+.modal-content input[type="text"] {
+    background-color: #1e2022;
+    font-size: small;
+    color: rgb(36, 36, 36); /* Light text color */
+    border: 1px solid #36404a; /* Dark border color */
+    transition: border-color 0.3s ease;
+}
+
+/* Close button */
+#closeModalBtn {
+    cursor: pointer;
+}
+
+#closeModalBtn:hover {
+    color: #4b5563; /* Dark hover text color */
+}
+
+/* Hide scrollbars for modal */
+body.modal-open {
+    overflow: hidden;
+}
+
+
+.close-btn {
+    margin-top: -10px;
+    margin-bottom: -10px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #2563eb; /* Light text color */
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #2563eb; /* White hover text color */
+}
+
+/* Improved note card design */
+.note-card {
+    margin-top: 1px;
+    margin-bottom: 40px;
+    background-color: #100f11; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    transition: border-color 0.3s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-5px); /* Set offset for hover effect */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); /* Adjusted box shadow */
+}
+
+/* Add animation */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Add animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile menu animation */
+#mobileMenu {
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-10px); /* Initial position above */
+}
+
+#mobileMenu.fade-in {
+    opacity: 1; /* Show menu */
+    transform: translateY(0); /* Move to original position */
+}
+
+
+/* Dark theme body */
+body {
+    background-color: #1a1a1a; /* Dark background color */
+    color: #ffffff; /* Light text color */
+}
+
+body button,
+input,
+textarea {
+  font-family: "Aldrich", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: larger;
+}
+/* Dark theme header */
+header {
+    background-color: #161616; /* Dark header background color */
+    color: #ffffff; /* Light text color */
+}
+
+/* Dark theme navigation links */
+nav a {
+    color: #ffffff; /* Light text color */
+}
+
+nav a:hover {
+    color: #60a5fa; /* Dark blue hover color */
+}
