@@ -23,4 +23,3 @@ The current version of the project is: **v1.0**
 ## TODO
 
 - Introduce a "Like" button to express appreciation for messages that resonate with you.
-- 
