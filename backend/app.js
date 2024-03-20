@@ -21,10 +21,26 @@ const MessageSchema = new mongoose.Schema({
   name: String,
   message: String,
   timestamp: { type: Date, default: Date.now },
+  loveCount: { type: Number, default: 0 }
 });
 const Message = mongoose.model("Message", MessageSchema);
 
 app.use(bodyParser.json());
+
+app.put("/api/messages/:id/love", async (req, res) => {
+  const messageId = req.params.id;
+  try {
+    const message = await Message.findById(messageId);
+    if (!message) {
+      return res.status(404).json({ error: "Message not found" });
+    }
+    message.loveCount++;
+    await message.save();
+    res.json({ message: "Message loved successfully", loveCount: message.loveCount });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.post("/api/messages", async (req, res) => {
   const { name, message } = req.body;
@@ -40,7 +56,7 @@ app.post("/api/messages", async (req, res) => {
 app.get("/api/messages", async (req, res) => {
   try {
     const messages = await Message.find();
-    res.json(messages);
+    res.json(messages.map(({ _id, name, message, timestamp, loveCount }) => ({ _id, name, message, timestamp, loveCount })));
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
