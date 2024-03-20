@@ -68,30 +68,32 @@
     });
   });
 </script>
-<main class="flex flex-col items-center justify-center min-h-screen">
+<main class="flex-col items-center justify-center min-h-screen p-4 ">
   {#if isAuthenticated}
     {#if $messages.length > 0}
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {#each $messages as message (message._id)}
-          <div class="bg-white shadow-md rounded-lg p-4">
-            <h2 class="text-lg font-semibold text-gray-800 mb-2">{message.name}</h2>
-            <p class="text-gray-600">{message.message}</p>
-            <button
-              class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
-              class:opacity-50={deletingMessageId === message._id}
-              on:click={() => deleteMessage(message._id)}
-              disabled={deletingMessageId === message._id}
-            >
-              {deletingMessageId === message._id ? "Deleting..." : "Delete"}
-            </button>
-          </div>
-        {/each}
-      </div>
+      
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+      {#each $messages as message (message._id)}
+        <div class="bg-white shadow-md rounded-lg p-4 sm:w-full md:w-90">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">{message.name}</h2>
+          <p class="text-gray-600">{message.message}</p>
+          <button
+            class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
+            class:opacity-50={deletingMessageId === message._id}
+            on:click={() => deleteMessage(message._id)}
+            disabled={deletingMessageId === message._id}
+          >
+            {deletingMessageId === message._id ? "Deleting..." : "Delete"}
+          </button>
+        </div>
+      {/each}
+    </div>
+    
     {:else}
       <p class="mt-4 text-gray-600">No messages available.</p>
     {/if}
   {:else}
-    <div class="bg-white shadow-md rounded-lg p-8">
+    <div class=" shadow-md rounded-lg p-8 m-">
       <h1 class="text-3xl font-bold mb-6">Password Protected Page</h1>
       <form on:submit={handleSubmit} class="flex flex-col items-center">
         <label for="password" class="mb-2 text-lg font-semibold">Password:</label>
@@ -100,6 +102,7 @@
           id="password"
           bind:value={password}
           required
+          style="color:black"
           class="mb-4 p-3 border border-gray-300 rounded w-full"
         />
         <button
