@@ -47,6 +47,15 @@
     const postDate = new Date(timestamp);
     return formatDistanceToNow(postDate, { addSuffix: true });
   }
+  async function loveMessage(id) {
+    try {
+      await axios.put(`${API_URL}/messages/${id}/love`);
+      // Fetch data again to update the love count
+      await fetchData();
+    } catch (error) {
+      console.error("Error loving message:", error);
+    }
+  }
 </script>
 
 {#if isLoading}
@@ -65,6 +74,9 @@
             username={item.name}
             message={item.message}
             postInfo={formatPostInfo(item.timestamp)}
+            loveCount={item.loveCount}
+            messageId={item._id}
+            
           />
         {/each}
       </div>
