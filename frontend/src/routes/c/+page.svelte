@@ -68,34 +68,35 @@
     });
   });
 </script>
+
 <main class="flex flex-col items-center justify-center h-screen">
   {#if isAuthenticated}
     <h1 class="text-3xl font-bold mb-6">Admin Panel - Messages</h1>
     {#if $messages.length > 0}
-      <div class="overflow-auto">
-        <table class="min-w-full">
-          <thead>
-            <tr class="bg-gray-200">
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border rounded-lg">
+          <thead class="bg-gray-200">
+            <tr>
               <th
-                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
                 >Name</th
               >
               <th
-                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
                 >Message</th
               >
               <th
-                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
                 >Actions</th
               >
             </tr>
           </thead>
-          <tbody>
+          <tbody class="divide-y divide-gray-200">
             {#each $messages as message (message._id)}
-              <tr class="border-b border-gray-200">
-                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.name}</td>
-                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.message}</td>
-                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">
+              <tr>
+                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.name}</td>
+                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.message}</td>
+                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">
                   <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
                     class:opacity-50={deletingMessageId === message._id}
@@ -113,7 +114,7 @@
         </table>
       </div>
     {:else}
-      <p class="mt-4">No messages available.</p>
+      <p class="mt-4 text-gray-600">No messages available.</p>
     {/if}
   {:else}
     <h1 class="text-3xl font-bold mb-6">Password Protected Page</h1>
@@ -125,7 +126,7 @@
         bind:value={password}
         required
         style="color:black"
-        class="mb-4 color-black p-3 border border-gray-300 rounded w-full md:w-64"
+        class="mb-4 p-3 border border-gray-300 rounded w-full md:w-64"
       />
       <button
         type="submit"
