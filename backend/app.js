@@ -2,12 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
 const app = express();
 app.use(cors());
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect("mongodb+srv://minarsvn:Minar909@cluster0.pad3few.mongodb.net/anonymous?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
