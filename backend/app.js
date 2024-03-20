@@ -18,14 +18,12 @@ async function connectToMongoDB() {
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
-   
-   
+
     process.exit(1);
   }
 }
 
 connectToMongoDB();
-
 
 const MessageSchema = new mongoose.Schema({
   name: String,
@@ -45,7 +43,7 @@ app.delete("/api/messages/:id", async (req, res) => {
       return res.status(404).json({ error: "Message not found" });
     }
 
-    await message.remove();
+    await message.deleteOne();
 
     res.json({ message: "Message deleted successfully" });
   } catch (err) {
