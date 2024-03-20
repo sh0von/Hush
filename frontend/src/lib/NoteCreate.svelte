@@ -38,7 +38,7 @@
     try {
       await axios.post(`${API_URL}/messages`, { name, message });
       console.log("Message posted successfully!");
-      showToast = true;
+      showToastWithAutoClose();
       messageCreated.set(true);
       closeModal();
     } catch (error) {
