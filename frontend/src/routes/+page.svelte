@@ -83,12 +83,10 @@
       {#if numCardsToShow < sortedData.length}
         <div class="flex justify-center">
           {#if isLoading}
-            <!-- Loader animation -->
             <div
               class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"
             ></div>
           {:else}
-            <!-- Load More button -->
             <button
               style="border-radius: 10%; font-size: 15px;"
               class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -99,7 +97,6 @@
           {/if}
         </div>
       {:else}
-        <!-- All Loaded text -->
         <p class="text-center text-gray-500 mt-4">All Loaded -_-</p>
       {/if}
     </div>
