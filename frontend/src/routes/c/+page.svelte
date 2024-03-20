@@ -70,7 +70,6 @@
 </script>
 <main class="flex flex-col items-center justify-center min-h-screen">
   {#if isAuthenticated}
-    <h1 class="text-3xl font-bold py-8">Admin Panel - Messages</h1>
     {#if $messages.length > 0}
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {#each $messages as message (message._id)}
