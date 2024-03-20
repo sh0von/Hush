@@ -80,7 +80,7 @@
     rel="stylesheet"
   />
 
-  <meta property="og:image" content="https://ibb.co/74h2Vb8"/>
+  <meta property="og:image" content="https://iili.io/JX8efAg.jpg"/>
 </svelte:head>
 
 <style>
