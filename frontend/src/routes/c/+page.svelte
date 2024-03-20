@@ -6,7 +6,7 @@
 
   const messages = writable([]);
   let password = "";
-  const correctPassword = "yourpassword";
+  const correctPassword = "password";
   let isAuthenticated = false;
   let deletingMessageId = null;
 
