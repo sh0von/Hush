@@ -80,7 +80,7 @@
     rel="stylesheet"
   />
 
-  <meta property="og:image" content="$lib/banner.jpeg"/>
+  <meta property="og:image" content="https://ibb.co/74h2Vb8"/>
 </svelte:head>
 
 <style>
