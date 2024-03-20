@@ -68,7 +68,6 @@
     });
   });
 </script>
-
 <main class="flex flex-col items-center justify-center h-screen">
   {#if isAuthenticated}
     <h1 class="text-3xl font-bold mb-6">Admin Panel - Messages</h1>
@@ -78,15 +77,15 @@
           <thead>
             <tr class="bg-gray-200">
               <th
-                class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                 >Name</th
               >
               <th
-                class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                 >Message</th
               >
               <th
-                class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                class="px-3 py-2 md:px-6 md:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                 >Actions</th
               >
             </tr>
@@ -94,9 +93,9 @@
           <tbody>
             {#each $messages as message (message._id)}
               <tr class="border-b border-gray-200">
-                <td class="px-6 py-4 whitespace-nowrap">{message.name}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{message.message}</td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.name}</td>
+                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.message}</td>
+                <td class="px-3 py-2 md:px-6 md:py-4 whitespace-nowrap">
                   <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
                     class:opacity-50={deletingMessageId === message._id}
@@ -126,11 +125,11 @@
         bind:value={password}
         required
         style="color:black"
-        class="mb-4 color-black p-3 border border-gray-300 rounded w-64"
+        class="mb-4 color-black p-3 border border-gray-300 rounded w-full md:w-64"
       />
       <button
         type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto"
       >
         Submit
       </button>
