@@ -3,28 +3,6 @@
   import { onMount } from "svelte";
   import NoteCreate from "../lib/NoteCreate.svelte";
 
-  let modalVisible = false;
-
-  function openModal() {
-    modalVisible = true;
-  }
-
-  function minimizeModal() {
-    modalVisible = false;
-  }
-
-  function closeModalOutside(event) {
-    if (event.target.id === "myModal") {
-      modalVisible = false;
-    }
-  }
-
-  onMount(() => {
-    const mobileMenuBtn = document.getElementById("minimizeModalBtn");
-
-    mobileMenuBtn.addEventListener("click", minimizeModal);
-  });
-
   onMount(() => {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -81,24 +59,16 @@
 
 <slot />
 
-<button
-  on:click={openModal}
-  class="fixed bottom-8 right-8 bg-blue-600 text-white my-8 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
->
-  Write
-</button>
+<NoteCreate />
 
-<div
-  id="myModal"
-  class="modal"
-  style="display: {modalVisible ? 'flex' : 'none'}"
->
-  <NoteCreate />
-</div>
 <footer style="background-color: #161616;" class="footer text-white py-4">
   <div class="container mx-auto flex justify-center items-center h-full">
-    <p class="text-sm">HUSH | Made with ❤️ by <a class="underline" href="https://github.com/sh0von">Sh0von</a></p>
-
+    <p class="text-sm">
+      HUSH | Made with ❤️ by <a
+        class="underline"
+        href="https://github.com/sh0von">Sh0von</a
+      >
+    </p>
   </div>
 </footer>
 
