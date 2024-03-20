@@ -79,6 +79,8 @@
     href="https://fonts.googleapis.com/css2?family=Aldrich&family=Expletus+Sans&family=Federo&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap"
     rel="stylesheet"
   />
+
+  <meta property="og:image" content="$lib/banner.jpeg"/>
 </svelte:head>
 
 <style>
