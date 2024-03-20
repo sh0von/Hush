@@ -6,19 +6,26 @@ const dotenv = require("dotenv");
 
 const app = express();
 app.use(cors());
-require("dotenv").config();
+dotenv.config();
+
 const PORT = process.env.PORT || 3000;
+async function connectToMongoDB() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection error:", error.message);
+   
+   
+    process.exit(1);
+  }
+}
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+connectToMongoDB();
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB");
-});
 
 const MessageSchema = new mongoose.Schema({
   name: String,
