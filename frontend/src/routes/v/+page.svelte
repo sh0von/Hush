@@ -50,6 +50,10 @@
         Easily browse through messages with a convenient "Load More" button to
         unveil additional content.
       </li>
+      <li>
+        Toast notifications to confirm successful message posting, with an auto
+        close feature after 5 seconds.
+      </li>
     </ul>
   </section>
 
@@ -61,5 +65,10 @@
         Introduce a "Like" button to express appreciation for messages that
         resonate with you.
       </li>
-</section>
+      <li>
+        Implement admin features to manage and moderate the platform, including
+        the ability to delete messages.
+      </li>
+    </ul>
+  </section>
 </main>
