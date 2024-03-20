@@ -68,72 +68,48 @@
     });
   });
 </script>
-
-<main class="flex flex-col items-center justify-center h-screen">
+<main class="flex flex-col items-center justify-center min-h-screen">
   {#if isAuthenticated}
-    <h1 class="text-3xl font-bold mb-6">Admin Panel - Messages</h1>
+    <h1 class="text-3xl font-bold py-8">Admin Panel - Messages</h1>
     {#if $messages.length > 0}
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border rounded-lg">
-          <thead class="bg-gray-200">
-            <tr>
-              <th
-                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
-                >Name</th
-              >
-              <th
-                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
-                >Message</th
-              >
-              <th
-                class="px-4 py-2 md:px-6 md:py-3 text-left text-sm md:text-base font-semibold text-gray-700 uppercase tracking-wider"
-                >Actions</th
-              >
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-            {#each $messages as message (message._id)}
-              <tr>
-                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.name}</td>
-                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">{message.message}</td>
-                <td class="px-4 py-2 md:px-6 md:py-4 whitespace-nowrap">
-                  <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
-                    class:opacity-50={deletingMessageId === message._id}
-                    on:click={() => deleteMessage(message._id)}
-                    disabled={deletingMessageId === message._id}
-                  >
-                    {deletingMessageId === message._id
-                      ? "Deleting..."
-                      : "Delete"}
-                  </button>
-                </td>
-              </tr>
-            {/each}
-          </tbody>
-        </table>
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {#each $messages as message (message._id)}
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-2">{message.name}</h2>
+            <p class="text-gray-600">{message.message}</p>
+            <button
+              class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-400"
+              class:opacity-50={deletingMessageId === message._id}
+              on:click={() => deleteMessage(message._id)}
+              disabled={deletingMessageId === message._id}
+            >
+              {deletingMessageId === message._id ? "Deleting..." : "Delete"}
+            </button>
+          </div>
+        {/each}
       </div>
     {:else}
       <p class="mt-4 text-gray-600">No messages available.</p>
     {/if}
   {:else}
-    <h1 class="text-3xl font-bold mb-6">Password Protected Page</h1>
-    <form on:submit={handleSubmit} class="flex flex-col items-center">
-      <label for="password" class="mb-2 text-lg font-semibold">Password:</label>
-      <input
-        type="password"
-        id="password"
-        bind:value={password}
-        required
-        style="color:black"
-        class="mb-4 p-3 border border-gray-300 rounded w-full md:w-64"
-      />
-      <button
-        type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto"
-      >
-        Submit
-      </button>
-    </form>
+    <div class="bg-white shadow-md rounded-lg p-8">
+      <h1 class="text-3xl font-bold mb-6">Password Protected Page</h1>
+      <form on:submit={handleSubmit} class="flex flex-col items-center">
+        <label for="password" class="mb-2 text-lg font-semibold">Password:</label>
+        <input
+          type="password"
+          id="password"
+          bind:value={password}
+          required
+          class="mb-4 p-3 border border-gray-300 rounded w-full"
+        />
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   {/if}
 </main>
