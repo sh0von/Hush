@@ -54,6 +54,13 @@
         Toast notifications to confirm successful message posting, with an auto
         close feature after 5 seconds.
       </li>
+      <li>
+        A "Like" button to express appreciation for messages that resonate with you.
+        </li>
+      <li>
+        Admin features to manage and moderate the platform, including the ability to
+        delete messages.
+      </li>
     </ul>
   </section>
 
@@ -62,11 +69,11 @@
     <hr />
     <ul class="list-decimal px-8">
       <li>
-        Introduce a "Like" button to express appreciation for messages that
+        [DONE] Introduce a "Like" button to express appreciation for messages that
         resonate with you.
       </li>
       <li>
-        Implement admin features to manage and moderate the platform, including
+        [DONE] Implement admin features to manage and moderate the platform, including
         the ability to delete messages.
       </li>
     </ul>
