@@ -26,7 +26,7 @@
   onMount(async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/messages/${messageId}/loved`
+        `${API_URL}/messages/${messageId}/love`
       );
       isLoved = response.data.isLoved;
     } catch (error) {
