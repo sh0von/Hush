@@ -6,7 +6,7 @@
 
   const messages = writable([]);
   let password = "";
-  const correctPassword = "password";
+  const correctPassword = "12345";
   let isAuthenticated = false;
   let deletingMessageId = null;
 
@@ -125,7 +125,8 @@
         id="password"
         bind:value={password}
         required
-        class="mb-4 p-3 border border-gray-300 rounded w-64"
+        style="color:black"
+        class="mb-4 color-black p-3 border border-gray-300 rounded w-64"
       />
       <button
         type="submit"
