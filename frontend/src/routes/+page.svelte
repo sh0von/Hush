@@ -10,14 +10,21 @@
   let data = [];
   let isLoading = true;
   let numCardsToShow = 5;
-
   async function fetchData() {
     try {
       const response = await axios.get(`${API_URL}/messages`);
       data = response.data;
+
       sortedData = [...data].sort(
         (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
       );
+
+      const mostLovedMessage = sortedData.reduce((prev, current) =>
+        prev.loveCount > current.loveCount ? prev : current
+      );
+
+      sortedData = sortedData.filter((message) => message !== mostLovedMessage);
+      sortedData.unshift(mostLovedMessage);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -50,7 +57,7 @@
   async function loveMessage(id) {
     try {
       await axios.put(`${API_URL}/messages/${id}/love`);
-      // Fetch data again to update the love count
+
       await fetchData();
     } catch (error) {
       console.error("Error loving message:", error);
@@ -76,7 +83,6 @@
             postInfo={formatPostInfo(item.timestamp)}
             loveCount={item.loveCount}
             messageId={item._id}
-            
           />
         {/each}
       </div>
