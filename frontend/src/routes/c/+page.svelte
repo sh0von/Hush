@@ -222,7 +222,31 @@ function handleImport(event) {
     {#if $messages.length > 0}
       <div
         class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4"
-      >
+      >       <button
+      on:click={exportMessages}
+      class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-green-400 w-full md:w-auto mt-4"
+    >
+      Export All Messages
+    </button><button
+    on:click={deleteAllMessages}
+    class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-red-400 w-full md:w-auto mt-4"
+    >
+    Delete All Messages
+    </button>
+    
+    <input
+      type="file"
+      accept=".json"
+      id="importFile"
+      class="hidden"
+      on:change={handleImport}
+    />
+    <label
+      for="importFile"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto mt-4 cursor-pointer"
+    >
+      Import Messages
+    </label>
         {#each $messages as message (message._id)}
           <div class="bg-white shadow-md rounded-lg p-4 sm:w-full md:w-90">
             <h2 class="text-lg font-semibold text-gray-800 mb-2">
@@ -239,30 +263,7 @@ function handleImport(event) {
             </button>
           </div>
         {/each}
-        <button
-  on:click={exportMessages}
-  class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-green-400 w-full md:w-auto mt-4"
->
-  Export All Messages
-</button><button
-on:click={deleteAllMessages}
-class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-red-400 w-full md:w-auto mt-4"
->
-Delete All Messages
-</button>
-<input
-  type="file"
-  accept=".json"
-  id="importFile"
-  class="hidden"
-  on:change={handleImport}
-/>
-<label
-  for="importFile"
-  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto mt-4 cursor-pointer"
->
-  Import Messages
-</label>
+ 
 
       </div>
     {:else}
