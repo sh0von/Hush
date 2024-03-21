@@ -12,7 +12,6 @@
 
   let isLoved = false;
 
-  // Check if the message is loved in localStorage
   const localStorageKey = `isLoved_${messageId}`;
   const storedIsLoved = localStorage.getItem(localStorageKey);
   if (storedIsLoved !== null) {
@@ -21,10 +20,15 @@
 
   async function increaseLove() {
     try {
+     
+      if (isLoved) {
+        return;
+      }
+
       const response = await axios.put(`${API_URL}/messages/${messageId}/love`);
       loveCount = response.data.loveCount;
       isLoved = true;
-      // Store the loved status in localStorage
+
       localStorage.setItem(localStorageKey, JSON.stringify(true));
     } catch (error) {
       console.error("Error increasing love:", error);
