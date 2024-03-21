@@ -92,7 +92,54 @@
   function calculatePercentageIncrease(previousValue, currentValue) {
     if (previousValue === 0) return 100; // Handle division by zero
     return ((currentValue - previousValue) / previousValue) * 100;
+  }function exportMessages() {
+  const filename = "messages.json";
+  const data = JSON.stringify($messages);
+  const blob = new Blob([data], { type: "application/json" });
+
+  if (navigator.msSaveBlob) {
+    // For IE and Edge
+    navigator.msSaveBlob(blob, filename);
+  } else {
+    // For other browsers
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
   }
+}
+async function deleteAllMessages() {
+  try {
+    await axios.delete(`${API_URL}/messages`);
+    // Clear messages store
+    messages.set([]);
+    console.log("All messages deleted successfully.");
+  } catch (error) {
+    console.error("Failed to delete all messages:", error);
+  }
+}
+function handleImport(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = async (e) => {
+    try {
+      const importedMessages = JSON.parse(e.target.result);
+      // Call your API to import messages
+      // Example:
+      // await axios.post(`${API_URL}/messages/import`, importedMessages);
+      // Refresh messages
+      await fetchMessages();
+      console.log("Messages imported successfully.");
+    } catch (error) {
+      console.error("Failed to import messages:", error);
+    }
+  };
+
+  reader.readAsText(file);
+}
+
 
   // Run onMount to fetch messages when the component mounts
   onMount(async () => {
@@ -192,6 +239,31 @@
             </button>
           </div>
         {/each}
+        <button
+  on:click={exportMessages}
+  class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-green-400 w-full md:w-auto mt-4"
+>
+  Export All Messages
+</button><button
+on:click={deleteAllMessages}
+class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-red-400 w-full md:w-auto mt-4"
+>
+Delete All Messages
+</button>
+<input
+  type="file"
+  accept=".json"
+  id="importFile"
+  class="hidden"
+  on:change={handleImport}
+/>
+<label
+  for="importFile"
+  class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring focus:ring-blue-400 w-full md:w-auto mt-4 cursor-pointer"
+>
+  Import Messages
+</label>
+
       </div>
     {:else}
       <p class="mt-4 text-gray-600">No messages available.</p>
