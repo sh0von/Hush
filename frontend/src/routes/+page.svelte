@@ -75,16 +75,19 @@
   <main class="py-8 px-8 flex justify-center">
     <div class="container mx-auto max-w-xl">
       <div class="grid grid-cols-1 gap-4">
-        {#each sortedData.slice(0, numCardsToShow) as item}
-          <NoteCard
-            avatarSrc={`https://api.multiavatar.com/${item.name}.png`}
-            username={item.name}
-            message={item.message}
-            postInfo={formatPostInfo(item.timestamp)}
-            loveCount={item.loveCount}
-            messageId={item._id}
-          />
-        {/each}
+<!-- Main file (probably index.svelte) -->
+{#each sortedData.slice(0, numCardsToShow) as item, index}
+  <NoteCard
+    avatarSrc={`https://api.multiavatar.com/${item.name}.png`}
+    username={item.name}
+    message={item.message}
+    postInfo={formatPostInfo(item.timestamp)}
+    loveCount={item.loveCount}
+    messageId={item._id}
+    isMostLoved={index === 0}
+  />
+{/each}
+
       </div>
       {#if numCardsToShow < sortedData.length}
         <div class="flex justify-center">
