@@ -11,13 +11,21 @@
   export let messageId;
 
   let isLoved = false;
-  let isPopoverVisible = false;
+
+  // Check if the message is loved in localStorage
+  const localStorageKey = `isLoved_${messageId}`;
+  const storedIsLoved = localStorage.getItem(localStorageKey);
+  if (storedIsLoved !== null) {
+    isLoved = JSON.parse(storedIsLoved);
+  }
 
   async function increaseLove() {
     try {
       const response = await axios.put(`${API_URL}/messages/${messageId}/love`);
       loveCount = response.data.loveCount;
       isLoved = true;
+      // Store the loved status in localStorage
+      localStorage.setItem(localStorageKey, JSON.stringify(true));
     } catch (error) {
       console.error("Error increasing love:", error);
     }
@@ -33,20 +41,10 @@
       console.error("Error fetching love status:", error);
     }
   });
-
-  function showPopover() {
-    isPopoverVisible = true;
-  }
-
-  function hidePopover() {
-    isPopoverVisible = false;
-  }
 </script>
 
 <div
   class="relative note-card w-full pixel rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300"
-  on:mouseover={showPopover}
-  on:mouseout={hidePopover}
 >
   <div class="flex items-center justify-between mb-2">
     <div class="flex items-center">
@@ -85,19 +83,4 @@
   <hr class="py-2" />
   <p class="text-white mb-4">{message}</p>
   <small class="text-white">{postInfo}</small>
-
-  {#if isPopoverVisible}
-    <div
-      class="absolute z-10 top-full left-0 w-64 mt-2 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0"
-      on:mouseover={showPopover}
-      on:mouseout={hidePopover}
-    >
-      <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg">
-        <h3 class="font-semibold text-gray-900">Popover title</h3>
-      </div>
-      <div class="px-3 py-2">
-        <p>And here's some amazing content. It's very engaging. Right?</p>
-      </div>
-    </div>
-  {/if}
 </div>
